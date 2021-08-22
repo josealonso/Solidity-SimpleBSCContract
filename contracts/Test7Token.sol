@@ -7,23 +7,22 @@ import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
 /**
-* @dev Creates a mintable and burnable ERC20 token, called Test7.
-*
-* The default value of decimals is 18. To select a different value for
-* decimals you should overload it.
-*
-*/
+ * @dev Creates a mintable and burnable ERC20 token, called Test7.
+ *
+ * The default value of decimals is 18. To select a different value for
+ * decimals you should overload it.
+ *
+ */
 contract Test7 is ERC20, ERC20Burnable, Ownable {
-    constructor() ERC20("Test7", "TST7") {
-        _mint(msg.sender, 1000000000 * 10 ** decimals());
+    constructor(uint256 initialSupply) ERC20("Test7", "TST7") {
+        _mint(msg.sender, initialSupply * 10 ** decimals());
     }
 
     function mint(address to, uint256 amount) public onlyOwner {
         _mint(to, amount);
     }
-    
+
     function getBalanceOfBNB() public view returns (uint256) {
         return address(this).balance;
     }
 }
-
