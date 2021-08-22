@@ -30,3 +30,5 @@ truffle init
 
 Create Test7Token.sol inside the contracts folder
 
+npm install --save @openzeppelin/contracts
+Versions used ---> Truffle v5.4.1. Node v16.4.0
