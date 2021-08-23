@@ -6,7 +6,11 @@ const getWeb3 = () =>
     window.addEventListener("load", async () => {
       // Modern dapp browsers...
       if (window.ethereum) {
-        const web3 = new Web3(window.ethereum);
+        // BSC testnet
+        const web3 = new Web3('https://data-seed-prebsc-1-s1.binance.org:8545');
+        const account = web3.eth.accounts.create();
+        console.log("BSC testnet account: " + account);
+        // const web3 = new Web3(window.ethereum);
         try {
           // Request account access if needed
           await window.ethereum.enable();

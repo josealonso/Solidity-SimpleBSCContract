@@ -1,8 +1,8 @@
 
 const HDWalletProvider = require('@truffle/hdwallet-provider');
 const fs = require('fs');
-// const mnemonic = fs.readFileSync(".secret").toString().trim();
-const mnemonic = "";
+const mnemonic = fs.readFileSync(".secret").toString().trim();
+console.log("Mnemonic: " + mnemonic);
 const path = require('path');
 
 module.exports = {

@@ -13347,6 +13347,12 @@
     "version": "0.8.0+commit.c7dfd78e.Emscripten.clang"
   },
   "networks": {
+    "97": {
+      "events": {},
+      "links": {},
+      "address": "0xA02Fdc24D206cE1Ed97330f04e12DF8eDBa1A678",
+      "transactionHash": "0x60df9c97b2b2746b6b7db125bd16179ee699ab2c188e37e4c8c2d4f05430351e"
+    },
     "1337": {
       "events": {
         "0x8c5be1e5ebec7d5bd14f71427d1e84f3dd0314c0f7b2291e5b200ac8c7c3b925": {
@@ -13425,7 +13431,7 @@
     }
   },
   "schemaVersion": "3.4.1",
-  "updatedAt": "2021-08-23T13:24:01.219Z",
+  "updatedAt": "2021-08-23T15:40:07.450Z",
   "networkType": "ethereum",
   "devdoc": {
     "details": "Creates a mintable and burnable ERC20 token, called Test7. The default value of decimals is 18. To select a different value for decimals you should overload it.",
