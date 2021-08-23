@@ -5,7 +5,7 @@ import getWeb3 from "./getWeb3";
 import "./App.css";
 
 class App extends Component {
-  state = { loaded: false, kycAddress: "0x123", tokenSaleAddress: null, userTokens: 0 };
+  state = { loaded: false, tokenSaleAddress: null, userTokens: 0, BNBTokens: 0 };
 
   componentDidMount = async () => {
     try {
@@ -30,11 +30,10 @@ class App extends Component {
       console.log("---------------- this.networkId: " + this.networkId);
       console.log("Test7Token.networks: " + Test7Token.networks);
 
-
       // Set web3, accounts, and contract to the state, and then proceed with an
       // example of interacting with the contract's methods.
       this.listenToTokenTransfer();
-      this.setState({ loaded: true, tokenSaleAddress: Test7Token.networks[this.networkId].address }, this.updateUserTokens);
+      this.setState({ loaded: true, tokenSaleAddress: Test7Token.networks[this.networkId].address }, this.updateUserTokens, this.updateBNBUserTokens);
     } catch (error) {
       // Catch any errors for any of the above operations.
       alert(
@@ -44,9 +43,10 @@ class App extends Component {
     }
   };
 
-  getBNBTokens = async () => {
+  updateBNBUserTokens = async () => {
     let BNBTokens = await this.myTest7Token.methods.getBalanceOfBNB();  // (this.accounts[0]).call();
     console.log("AAAA - BNBTokens: " + BNBTokens);
+    this.setState({ BNBTokens: BNBTokens });
   }
 
   updateUserTokens = async () => {
@@ -61,9 +61,9 @@ class App extends Component {
   }
 
   handleBuyTokens = async () => {
-    // await this.myTest7Token.methods.buyTokens(this.accounts[0]).send({ from: this.accounts[0], value: "1" });
-    await this.myTest7Token.methods.transfer(this.accounts[0], 1);
+    await this.myTest7Token.methods.transfer(this.accounts[0], 1 * 10 ^ 18);
     this.updateUserTokens();
+    // this.updateBNBUserTokens();
   }
 
   handleInputChange = (event) => {
@@ -83,13 +83,9 @@ class App extends Component {
       <div className="App">
         <h1>Balance on BSC</h1>
 
-        {/* <h2>Enable your account</h2> */}
-        {/* Address to allow: <input type="text" name="kycAddress" value={this.state.kycAddress} onChange={this.handleInputChange} />
-        <button type="button" onClick={this.handleKycWhitelisting}>Add Address to Whitelist</button>
-        <h2>Buy Complu-Tokens</h2> */}
         <p>Test7 Token Sale Address: {this.state.tokenSaleAddress}</p>
         <p>You currently have: {this.state.userTokens} Test7 tokens</p>
-        <p>You currently have: {this.getBNBTokens} BNB tokens</p>
+        <p>You currently have: {this.state.BNBTokens} BNB tokens</p>
         <button type="button" onClick={this.handleBuyTokens}>Buy Test7 tokens</button>
       </div>
 
