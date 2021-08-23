@@ -1,4 +1,9 @@
-var path = require('path');
+
+const HDWalletProvider = require('@truffle/hdwallet-provider');
+const fs = require('fs');
+// const mnemonic = fs.readFileSync(".secret").toString().trim();
+const mnemonic = "";
+const path = require('path');
 
 module.exports = {
   // See <http://truffleframework.com/docs/advanced/configuration>
@@ -8,19 +13,29 @@ module.exports = {
     development: {
       host: "127.0.0.1",
       port: 8545,
-      network_id: "*",    // 1337
-    }    // ,
-    // ganache_local: {
-    //   provider: function () {
-    //     return new HDWalletProvider(process.env.MNEMONIC, "http://127.0.0.1:7545", AccountIndex);
-    //   },
-    //   network_id: 1337
-    // }
+      network_id: "*",
+    },
+    testnet: {
+      provider: () => new HDWalletProvider(mnemonic, `https://data-seed-prebsc-1-s1.binance.org:8545`),
+      network_id: 97,
+      confirmations: 10,
+      timeoutBlocks: 200,
+      skipDryRun: true
+    },
+    bsc: {
+      provider: () => new HDWalletProvider(mnemonic, `https://bsc-dataseed1.binance.org`),
+      network_id: 56,
+      confirmations: 10,
+      timeoutBlocks: 200,
+      skipDryRun: true
+    },
   },
+
   compilers: {
     solc: {
       version: "0.8.0"
     }
   }
-};
+}
+
 
