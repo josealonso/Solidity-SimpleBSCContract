@@ -13,7 +13,7 @@ import "@openzeppelin/contracts/access/Ownable.sol";
  * decimals you should overload it.
  *
  */
-contract Test7 is ERC20, ERC20Burnable, Ownable {
+contract Test7Token is ERC20, ERC20Burnable, Ownable {
     constructor(uint256 initialSupply) ERC20("Test7", "TST7") {
         _mint(msg.sender, initialSupply * 10 ** decimals());
     }

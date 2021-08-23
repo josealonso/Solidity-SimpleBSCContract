@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Test7Token from "./contracts/Test7Token.json";
+import Test7Token from "./contracts/Test7.json";
 import getWeb3 from "./getWeb3";
 
 import "./App.css";
