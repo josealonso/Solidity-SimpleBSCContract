@@ -33,8 +33,8 @@ class App extends Component {
 
       // Set web3, accounts, and contract to the state, and then proceed with an
       // example of interacting with the contract's methods.
-           this.listenToTokenTransfer();
-           this.setState({ loaded: true, tokenSaleAddress: Test7Token.networks[this.networkId].address }, this.updateUserTokens);  
+      this.listenToTokenTransfer();
+      this.setState({ loaded: true, tokenSaleAddress: Test7Token.networks[this.networkId].address }, this.updateUserTokens);
     } catch (error) {
       // Catch any errors for any of the above operations.
       alert(
@@ -46,8 +46,8 @@ class App extends Component {
 
   updateUserTokens = async () => {
     // call() is a reading, gas-free operation
-    let userTokens = await this.myToken.methods.balanceOf(this.accounts[0]).call();
-    console.log("userTokens: " + userTokens);
+    let userTokens = await this.myTest7Token.methods.balanceOf(this.accounts[0]).call();
+    console.log("AAAA - userTokens: " + userTokens);
     this.setState({ userTokens: userTokens });
   }
 
@@ -56,7 +56,9 @@ class App extends Component {
   }
 
   handleBuyTokens = async () => {
-    await this.myTokenSale.methods.buyTokens(this.accounts[0]).send({ from: this.accounts[0], value: "1" });
+    // await this.myTest7Token.methods.buyTokens(this.accounts[0]).send({ from: this.accounts[0], value: "1" });
+    await this.myTest7Token.methods.transfer(this.accounts[0], 1);
+    this.updateUserTokens();
   }
 
   handleInputChange = (event) => {
@@ -68,29 +70,19 @@ class App extends Component {
     });
   }
 
-  // runExample = async () => {
-  //   const { accounts, contract } = this.state;
-
-  // Stores a given value, 5 by default.
-  // let myBalance = await contract.methods.balanceOf({ from: accounts[0] });
-  // let userTokens = await this.myTest7Token.methods.balanceOf(this.accounts[0]).call(); 
-  // Get the value from the contract to prove it worked.
-  //    const response = await contract.methods.get().call();
-  // };
-
   render() {
-    if (!this.state.web3) {
-      return <div>Loading Web3, accounts, and contract...</div>;
-    }
+    // if (!this.state.web3) {
+    //   return <div>Loading Web3, accounts, and contract...</div>;
+    // }
     return (
       <div className="App">
         <h1>Balance on BSC</h1>
 
-        <h2>Enable your account</h2>
+        {/* <h2>Enable your account</h2> */}
         {/* Address to allow: <input type="text" name="kycAddress" value={this.state.kycAddress} onChange={this.handleInputChange} />
         <button type="button" onClick={this.handleKycWhitelisting}>Add Address to Whitelist</button>
         <h2>Buy Complu-Tokens</h2> */}
-        <p>Send Ether to this address: {this.state.tokenSaleAddress}</p>
+        <p>Test7 Token Sale Address: {this.state.tokenSaleAddress}</p>
         <p>You currently have: {this.state.userTokens} Test7 tokens</p>
         <button type="button" onClick={this.handleBuyTokens}>Buy Test7 tokens</button>
       </div>
