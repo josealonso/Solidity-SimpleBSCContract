@@ -33,7 +33,7 @@ Create Test7Token.sol inside the contracts folder
 npm install --save @openzeppelin/contracts
 Versions used ---> Truffle v5.4.1. Node v16.4.0
 truffle console
-truffle(ganache)> web3.eth.sendTransaction({to:PASTE_ACCOUNT_FROM_METAMASK, from:accounts[0], value:web3.utils.toWei(2, ether)});
+truffle(ganache)> web3.eth.sendTransaction({to:PASTE_ACCOUNT_FROM_METAMASK, from:accounts[0], value:web3.utils.toWei("2", "ether")});     // NOTE: the number is a string
 To ensure truffle can communicate with Metamask.
 
 ------
@@ -44,6 +44,12 @@ To ensure truffle can communicate with Metamask.
 cd client
 npm run start
 - Problem with the directory for the json files used by React.
+- Support for Metamask wallet 
+```
+npm i --save @truffle/hdwallet-provider
+```
+
+
 -------
 #### Testing 
 
@@ -51,4 +57,6 @@ npm run start
 npm i --save chai chai-bn chai-as-promised
 truffle test
 ```
+
+[![built-with openzeppelin](https://img.shields.io/badge/built%20with-OpenZeppelin-3677FF)](https://docs.openzeppelin.com/)
 

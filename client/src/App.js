@@ -44,6 +44,11 @@ class App extends Component {
     }
   };
 
+  getBNBTokens = async () => {
+    let BNBTokens = await this.myTest7Token.methods.getBalanceOfBNB();  // (this.accounts[0]).call();
+    console.log("AAAA - BNBTokens: " + BNBTokens);
+  }
+
   updateUserTokens = async () => {
     // call() is a reading, gas-free operation
     let userTokens = await this.myTest7Token.methods.balanceOf(this.accounts[0]).call();
@@ -84,6 +89,7 @@ class App extends Component {
         <h2>Buy Complu-Tokens</h2> */}
         <p>Test7 Token Sale Address: {this.state.tokenSaleAddress}</p>
         <p>You currently have: {this.state.userTokens} Test7 tokens</p>
+        <p>You currently have: {this.getBNBTokens} BNB tokens</p>
         <button type="button" onClick={this.handleBuyTokens}>Buy Test7 tokens</button>
       </div>
 

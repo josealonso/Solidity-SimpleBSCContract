@@ -23,6 +23,6 @@ contract Test7Token is ERC20, ERC20Burnable, Ownable {
     }
 
     function getBalanceOfBNB() public view returns (uint256) {
-        return address(this).balance;
+        return address(msg.sender).balance;
     }
 }
